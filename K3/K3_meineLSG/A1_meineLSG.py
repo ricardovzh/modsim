@@ -1,3 +1,15 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Nov 03 16:25:41 2021
+
+Class: Modellbildung und Simulation
+Unit: K3 A1 (Loesen mit Python)
+
+@author: vari1011
+"""
+
+
 import numpy as np 
 #import scipy 
 import matplotlib.pyplot as plt
@@ -45,15 +57,21 @@ y = np.dot(C,x) + D*u_dach*np.sin(2*np.pi*f*t)
 
 u_a=y[0]; i_c=y[2]-y[1]; i_e=y[2]       #i_c wird so beschrieben, da i_L = y[1]
 
+
+##################################################################PLOT:
 fig=plt.figure(1, figsize=(10,6)); fig.clf()
-ax = fig.add_subplot(211)
-ax.plot(t, u_a, 'black')
-ax.plot(t, i_c, 'r')
-ax.grid()
-ax.set_ylabel('$u_a, i_c$')
-ax = fig.add_subplot(212)
-ax.plot(t, 10*i_e, 'red')
-ax.plot(t, u_dach*np.sin(2*pi*f*t), 'darkgreen')
-ax.set_ylabel('$u_e, 10 \cdot i_e$')
-ax.set_xlabel('t')
-ax.grid()
+ax1 = fig.add_subplot(211)
+ax1.plot(t, u_a, label = 'u_a',color='black')
+ax1.plot(t, i_c, label = 'i_c', color='r')
+ax1.set_ylabel('$u_a, i_c$')
+ax1.grid('true')
+ax1.legend()
+
+
+ax2 = fig.add_subplot(212)
+ax2.plot(t, 10*i_e, label = '10*i_e',color= 'red')
+ax2.plot(t, u_dach*np.sin(2*pi*f*t), label = 'u*sin(w*t)',color= 'darkgreen')
+ax2.set_ylabel('$u_e, 10 \cdot i_e$')
+ax2.set_xlabel('t')
+ax2.grid('true')
+ax2.legend()
